@@ -880,6 +880,9 @@ assert(%(type_name)s_CheckExact(%(operand)s));""" % {
     def getTakeReferenceStatement(operand):
         return ""
 
+    def hasPreferredSlot(self, right, slot):
+        return False
+
 
 class IntDesc(ConcreteTypeBase):
     type_name = "int"
@@ -996,6 +999,13 @@ assert(PyUnicode_CheckExact(%(operand)s));""" % {
         else:
             assert False, slot
 
+    def hasPreferredSlot(self, right, slot):
+        # TODO: Same applies to bytearray once we add it.
+        if slot == "sq_concat" and right is str_desc:
+            return True
+
+        return False
+
 
 unicode_desc = UnicodeDesc()
 
@@ -1029,6 +1039,12 @@ class FloatDesc(ConcreteTypeBase):
     @classmethod
     def getNewStyleNumberTypeCheckExpression(cls, operand):
         return "1"
+
+    def hasPreferredSlot(self, right, slot):
+        if right in (int_desc, long_desc):
+            return True
+
+        return False
 
 
 float_desc = FloatDesc()
@@ -1219,6 +1235,12 @@ class LongDesc(ConcreteTypeBase):
 
     @staticmethod
     def needsIndexConversion():
+        return False
+
+    def hasPreferredSlot(self, right, slot):
+        if right is int_desc:
+            return True
+
         return False
 
 

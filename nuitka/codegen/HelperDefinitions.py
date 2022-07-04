@@ -389,11 +389,10 @@ nonspecialized_rshift_helpers_set = OrderedSet(
 
 
 specialized_pow_helpers_set = buildOrderedSet(
-    # TODO: Disable nbool, makes no sense
-    _makeTypeOps("POW", "FLOAT", include_nbool=True),
-    _makeTypeOps("POW", "LONG", include_nbool=True),
-    _makeTypeOps("POW", "INT", include_nbool=True),
-    _makeFriendOps("POW", True, "INT", "LONG"),
+    _makeTypeOps("POW", "FLOAT", include_nbool=False),
+    _makeTypeOps("POW", "LONG", include_nbool=False),
+    _makeTypeOps("POW", "INT", include_nbool=False),
+    _makeFriendOps("POW", False, "INT", "LONG", "FLOAT"),
     _makeDefaultOps("POW", include_nbool=True),
     (
         # Float is used by other types for ** operations.

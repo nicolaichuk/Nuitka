@@ -1171,7 +1171,7 @@ static inline bool _BINARY_OPERATION_RSHIFT_INT_LONG_INPLACE(PyObject **operand1
     assert(type1->tp_as_number == NULL || type1->tp_as_number->nb_inplace_rshift == NULL);
 
     {
-        binaryfunc slot1 = PyInt_Type.tp_as_number->nb_rshift;
+        // Slot1 ignored on purpose, type2 takes precedence.
         binaryfunc slot2 = NULL;
 
         if (!(0)) {
@@ -1179,17 +1179,6 @@ static inline bool _BINARY_OPERATION_RSHIFT_INT_LONG_INPLACE(PyObject **operand1
             /* Different types, need to consider second value slot. */
 
             slot2 = PyLong_Type.tp_as_number->nb_rshift;
-        }
-
-        if (slot1 != NULL) {
-            PyObject *x = slot1(*operand1, operand2);
-
-            if (x != Py_NotImplemented) {
-                obj_result = x;
-                goto exit_inplace_result_object;
-            }
-
-            Py_DECREF(x);
         }
 
         if (slot2 != NULL) {
@@ -1265,28 +1254,10 @@ static inline bool _BINARY_OPERATION_RSHIFT_LONG_INT_INPLACE(PyObject **operand1
 
     {
         binaryfunc slot1 = PyLong_Type.tp_as_number->nb_rshift;
-        binaryfunc slot2 = NULL;
-
-        if (!(0)) {
-            assert(type1 != type2);
-            /* Different types, need to consider second value slot. */
-
-            slot2 = PyInt_Type.tp_as_number->nb_rshift;
-        }
+        // Slot2 ignored on purpose, type1 takes precedence.
 
         if (slot1 != NULL) {
             PyObject *x = slot1(*operand1, operand2);
-
-            if (x != Py_NotImplemented) {
-                obj_result = x;
-                goto exit_inplace_result_object;
-            }
-
-            Py_DECREF(x);
-        }
-
-        if (slot2 != NULL) {
-            PyObject *x = slot2(*operand1, operand2);
 
             if (x != Py_NotImplemented) {
                 obj_result = x;

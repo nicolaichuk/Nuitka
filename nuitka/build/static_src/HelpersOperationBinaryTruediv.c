@@ -2956,7 +2956,7 @@ static PyObject *_BINARY_OPERATION_TRUEDIV_OBJECT_INT_LONG(PyObject *operand1, P
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyInt_Type.tp_as_number->nb_true_divide;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -2964,17 +2964,6 @@ static PyObject *_BINARY_OPERATION_TRUEDIV_OBJECT_INT_LONG(PyObject *operand1, P
         /* Different types, need to consider second value slot. */
 
         slot2 = PyLong_Type.tp_as_number->nb_true_divide;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -3027,28 +3016,10 @@ static PyObject *_BINARY_OPERATION_TRUEDIV_OBJECT_LONG_INT(PyObject *operand1, P
 #endif
 
     binaryfunc slot1 = PyLong_Type.tp_as_number->nb_true_divide;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyInt_Type.tp_as_number->nb_true_divide;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -3096,7 +3067,7 @@ static nuitka_bool _BINARY_OPERATION_TRUEDIV_NBOOL_INT_LONG(PyObject *operand1, 
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyInt_Type.tp_as_number->nb_true_divide;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -3104,17 +3075,6 @@ static nuitka_bool _BINARY_OPERATION_TRUEDIV_NBOOL_INT_LONG(PyObject *operand1, 
         /* Different types, need to consider second value slot. */
 
         slot2 = PyLong_Type.tp_as_number->nb_true_divide;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -3175,28 +3135,10 @@ static nuitka_bool _BINARY_OPERATION_TRUEDIV_NBOOL_LONG_INT(PyObject *operand1, 
 #endif
 
     binaryfunc slot1 = PyLong_Type.tp_as_number->nb_true_divide;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyInt_Type.tp_as_number->nb_true_divide;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -3252,7 +3194,7 @@ static PyObject *_BINARY_OPERATION_TRUEDIV_OBJECT_INT_FLOAT(PyObject *operand1, 
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyInt_Type.tp_as_number->nb_true_divide;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -3260,17 +3202,6 @@ static PyObject *_BINARY_OPERATION_TRUEDIV_OBJECT_INT_FLOAT(PyObject *operand1, 
         /* Different types, need to consider second value slot. */
 
         slot2 = PyFloat_Type.tp_as_number->nb_true_divide;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -3323,28 +3254,10 @@ static PyObject *_BINARY_OPERATION_TRUEDIV_OBJECT_FLOAT_INT(PyObject *operand1, 
 #endif
 
     binaryfunc slot1 = PyFloat_Type.tp_as_number->nb_true_divide;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyInt_Type.tp_as_number->nb_true_divide;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -3392,7 +3305,7 @@ static nuitka_bool _BINARY_OPERATION_TRUEDIV_NBOOL_INT_FLOAT(PyObject *operand1,
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyInt_Type.tp_as_number->nb_true_divide;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -3400,17 +3313,6 @@ static nuitka_bool _BINARY_OPERATION_TRUEDIV_NBOOL_INT_FLOAT(PyObject *operand1,
         /* Different types, need to consider second value slot. */
 
         slot2 = PyFloat_Type.tp_as_number->nb_true_divide;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -3471,28 +3373,10 @@ static nuitka_bool _BINARY_OPERATION_TRUEDIV_NBOOL_FLOAT_INT(PyObject *operand1,
 #endif
 
     binaryfunc slot1 = PyFloat_Type.tp_as_number->nb_true_divide;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyInt_Type.tp_as_number->nb_true_divide;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -3547,7 +3431,7 @@ static PyObject *_BINARY_OPERATION_TRUEDIV_OBJECT_LONG_FLOAT(PyObject *operand1,
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyLong_Type.tp_as_number->nb_true_divide;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -3555,17 +3439,6 @@ static PyObject *_BINARY_OPERATION_TRUEDIV_OBJECT_LONG_FLOAT(PyObject *operand1,
         /* Different types, need to consider second value slot. */
 
         slot2 = PyFloat_Type.tp_as_number->nb_true_divide;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -3620,28 +3493,10 @@ static PyObject *_BINARY_OPERATION_TRUEDIV_OBJECT_FLOAT_LONG(PyObject *operand1,
 #endif
 
     binaryfunc slot1 = PyFloat_Type.tp_as_number->nb_true_divide;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyLong_Type.tp_as_number->nb_true_divide;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -3691,7 +3546,7 @@ static nuitka_bool _BINARY_OPERATION_TRUEDIV_NBOOL_LONG_FLOAT(PyObject *operand1
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyLong_Type.tp_as_number->nb_true_divide;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -3699,17 +3554,6 @@ static nuitka_bool _BINARY_OPERATION_TRUEDIV_NBOOL_LONG_FLOAT(PyObject *operand1
         /* Different types, need to consider second value slot. */
 
         slot2 = PyFloat_Type.tp_as_number->nb_true_divide;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -3772,28 +3616,10 @@ static nuitka_bool _BINARY_OPERATION_TRUEDIV_NBOOL_FLOAT_LONG(PyObject *operand1
 #endif
 
     binaryfunc slot1 = PyFloat_Type.tp_as_number->nb_true_divide;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyLong_Type.tp_as_number->nb_true_divide;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;

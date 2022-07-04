@@ -4948,7 +4948,7 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_INT_LONG(PyObject *operand1, PyObj
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyInt_Type.tp_as_number->nb_add;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -4956,17 +4956,6 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_INT_LONG(PyObject *operand1, PyObj
         /* Different types, need to consider second value slot. */
 
         slot2 = PyLong_Type.tp_as_number->nb_add;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -5024,28 +5013,10 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_LONG_INT(PyObject *operand1, PyObj
 #endif
 
     binaryfunc slot1 = PyLong_Type.tp_as_number->nb_add;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyInt_Type.tp_as_number->nb_add;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -5098,7 +5069,7 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_INT_LONG(PyObject *operand1, PyOb
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyInt_Type.tp_as_number->nb_add;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -5106,17 +5077,6 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_INT_LONG(PyObject *operand1, PyOb
         /* Different types, need to consider second value slot. */
 
         slot2 = PyLong_Type.tp_as_number->nb_add;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -5182,28 +5142,10 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_LONG_INT(PyObject *operand1, PyOb
 #endif
 
     binaryfunc slot1 = PyLong_Type.tp_as_number->nb_add;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyInt_Type.tp_as_number->nb_add;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -5264,7 +5206,7 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_INT_FLOAT(PyObject *operand1, PyOb
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyInt_Type.tp_as_number->nb_add;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -5272,17 +5214,6 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_INT_FLOAT(PyObject *operand1, PyOb
         /* Different types, need to consider second value slot. */
 
         slot2 = PyFloat_Type.tp_as_number->nb_add;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -5340,28 +5271,10 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_FLOAT_INT(PyObject *operand1, PyOb
 #endif
 
     binaryfunc slot1 = PyFloat_Type.tp_as_number->nb_add;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyInt_Type.tp_as_number->nb_add;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -5414,7 +5327,7 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_INT_FLOAT(PyObject *operand1, PyO
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyInt_Type.tp_as_number->nb_add;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -5422,17 +5335,6 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_INT_FLOAT(PyObject *operand1, PyO
         /* Different types, need to consider second value slot. */
 
         slot2 = PyFloat_Type.tp_as_number->nb_add;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -5498,28 +5400,10 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_FLOAT_INT(PyObject *operand1, PyO
 #endif
 
     binaryfunc slot1 = PyFloat_Type.tp_as_number->nb_add;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyInt_Type.tp_as_number->nb_add;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -5579,7 +5463,7 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_LONG_FLOAT(PyObject *operand1, PyO
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyLong_Type.tp_as_number->nb_add;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -5587,17 +5471,6 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_LONG_FLOAT(PyObject *operand1, PyO
         /* Different types, need to consider second value slot. */
 
         slot2 = PyFloat_Type.tp_as_number->nb_add;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -5657,28 +5530,10 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_FLOAT_LONG(PyObject *operand1, PyO
 #endif
 
     binaryfunc slot1 = PyFloat_Type.tp_as_number->nb_add;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyLong_Type.tp_as_number->nb_add;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -5733,7 +5588,7 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_LONG_FLOAT(PyObject *operand1, Py
 #pragma warning(pop)
 #endif
 
-    binaryfunc slot1 = PyLong_Type.tp_as_number->nb_add;
+    // Slot1 ignored on purpose, type2 takes precedence.
     binaryfunc slot2 = NULL;
 
     if (!(0)) {
@@ -5741,17 +5596,6 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_LONG_FLOAT(PyObject *operand1, Py
         /* Different types, need to consider second value slot. */
 
         slot2 = PyFloat_Type.tp_as_number->nb_add;
-    }
-
-    if (slot1 != NULL) {
-        PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
     }
 
     if (slot2 != NULL) {
@@ -5819,28 +5663,10 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_FLOAT_LONG(PyObject *operand1, Py
 #endif
 
     binaryfunc slot1 = PyFloat_Type.tp_as_number->nb_add;
-    binaryfunc slot2 = NULL;
-
-    if (!(0)) {
-        assert(type1 != type2);
-        /* Different types, need to consider second value slot. */
-
-        slot2 = PyLong_Type.tp_as_number->nb_add;
-    }
+    // Slot2 ignored on purpose, type1 takes precedence.
 
     if (slot1 != NULL) {
         PyObject *x = slot1(operand1, operand2);
-
-        if (x != Py_NotImplemented) {
-            obj_result = x;
-            goto exit_binary_result_object;
-        }
-
-        Py_DECREF(x);
-    }
-
-    if (slot2 != NULL) {
-        PyObject *x = slot2(operand1, operand2);
 
         if (x != Py_NotImplemented) {
             obj_result = x;
@@ -5910,7 +5736,7 @@ static PyObject *_BINARY_OPERATION_ADD_OBJECT_STR_UNICODE(PyObject *operand1, Py
     // Statically recognized that coercion is not possible with these types
 
     {
-        PyObject *o = PyString_Type.tp_as_sequence->sq_concat(operand1, operand2);
+        PyObject *o = PyUnicode_Type.tp_as_sequence->sq_concat(operand1, operand2);
         obj_result = o;
         goto exit_binary_result_object;
     }
@@ -5996,7 +5822,7 @@ static nuitka_bool _BINARY_OPERATION_ADD_NBOOL_STR_UNICODE(PyObject *operand1, P
     // Statically recognized that coercion is not possible with these types
 
     {
-        PyObject *o = PyString_Type.tp_as_sequence->sq_concat(operand1, operand2);
+        PyObject *o = PyUnicode_Type.tp_as_sequence->sq_concat(operand1, operand2);
         obj_result = o;
         goto exit_binary_result_object;
     }
